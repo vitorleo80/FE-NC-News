@@ -1,0 +1,11 @@
+.header{
+    display: grid;
+    background-color:grey;
+    grid-template-columns: 12, 1fr;
+}
+
+.title{
+    padding-bottom: 2%;
+    margin-top: 20px;
+    grid-column: 1/10;
+}

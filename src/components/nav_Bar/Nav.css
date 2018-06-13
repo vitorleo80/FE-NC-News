@@ -1,0 +1,13 @@
+.navbar {
+    background-color:black;
+    
+  }
+p {
+    color: white
+}
+
+@media screen and (max-width: 992px) {
+    p {
+      color: black
+    }
+  }
