@@ -7,11 +7,13 @@ import Header from './components/header/Header'
 import Users from './components/users/Users'
 import Topics from './components/topics/Topics'
 import Main from './components/main/Main'
+import Comments from './components/comments/Comments'
 import NotFound from './components/error/NotFound'
-import Article from './components/articles/Article'
+
 
 
 class App extends Component {
+ 
   render() {
     return (
       <div className="App">
@@ -19,6 +21,7 @@ class App extends Component {
         <Header/>
         <Switch>
           <Route
+            exact
             path="/articles"
             render={props => {
               return <Articles {...props}  />
@@ -31,20 +34,34 @@ class App extends Component {
               return <Users {...props} />
             }}
           />
+         <Route
+            path="/topics/:topic_id/articles"
+            render={props => {
+              return <Articles {...props}  />;
+            }}
+          />
+
           <Route
             exact
             path="/topics"
             render={props => {
-              return <Topics {...props} />
+              return <Topics {...props} />;
             }}
           />
           <Route
-            exact
+          exact
             path="/articles/:article_id"
             render={props => {
               return <Articles {...props} />
             }}
           />
+          <Route
+            path="/articles/:article_id/comments"
+            render={props => {
+              return <Comments {...props}/>;
+            }}
+          />
+
           <Route exact path="/" component={Main} />
           <Route path="/" component={NotFound} />
         </Switch>
@@ -54,6 +71,8 @@ class App extends Component {
 }
 
 export default App;
+
+            
   
           
 

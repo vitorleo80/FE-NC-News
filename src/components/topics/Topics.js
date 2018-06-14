@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Card, Col, Button, CardTitle } from "react-materialize";
-import fetch from '../../utils'
+import {Link} from 'react-router-dom'
+import {getData} from '../../utils'
 import "./Topics.css"
 
 
@@ -11,38 +12,53 @@ class Topics extends Component {
    }
 
     componentDidMount = async () => {
-        const data = await fetch(`https://norhtcoders-app.herokuapp.com/api${this.props.match.url}`)
+        const {url} = this.props.match
+        const data = await getData(url)
         this.setState({topics: data.topics})
    }
 
 
+   componentDidUpdate = async (prevProps, prevState) => {
+     const {url} = this.props.match
+     if (prevProps.match.url !== url){
+       const data = await getData(url)
+       this.setState({topics: data.topics})
+     }
+   }
+
+
+
+  
+
+
    
     render(){
-        const newTopics = [...this.state.topics]
-        
+        const topics = this.state.topics
         return(
         <div className="topics">
-          {newTopics.map((topic, index) => {
+          {topics.map((topic, index) => {
             return (
-              <Col key={index} m={3} s={6}>
+              <Col key={topic._id} m={3} s={1}>
                 <Card
-                 header={<CardTitle image= {`https://source.unsplash.com/collection/630995/480x480`}></CardTitle>}
-                  key={topic._id}
-                  className="black"
-                  textClassName="white-text"
-                  title={topic.title}
+                  key={index}
+                  className="grey"
+                  textClassName="white"
+                  title={topic.title.toUpperCase()}
                   actions={[
+                    <Link to={`/topics/${topic.title.toLowerCase()}/articles`}>
                     <Button
+                      key={`actions1${index}`}
                       waves="light"
-                      className='red'
+                      className='salmon'
                       node="a"
-                      href={`/topics/${topic._id}`}
+                    
                     >
-                      See Articles
+                      Read All Articles
                     </Button>
+                    </Link>
                   ]}
                 >
-                  <p>{topic.slug}</p>
+                  
                   
                 </Card>
               </Col>
@@ -50,6 +66,8 @@ class Topics extends Component {
           })}
          
         </div>
+        
+        
        
               
     )

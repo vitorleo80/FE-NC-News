@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Card, Col, Button, CardTitle } from "react-materialize";
-import fetch from '../../utils'
+import {getData} from '../../utils'
 import "./Users.css"
 
 
@@ -11,7 +11,8 @@ class Users extends Component {
    }
 
     componentDidMount = async () => {
-        const data = await fetch(`https://norhtcoders-app.herokuapp.com/api${this.props.match.url}`)
+      const {url} = this.props.match  
+      const data = await getData(url)
         this.setState({users: data.users})
      
    }
@@ -19,29 +20,21 @@ class Users extends Component {
 
    
     render(){
-        const newUsers = [...this.state.users]
+        const newUsers = this.state.users
         
         return(
         <div className="Users">
           {newUsers.map((user, index) => {
             return (
-              <Col key={index} m={3} s={6}>
+              <Col key={index} m={2} s={1}>
                 <Card
                  header={<CardTitle image= {user.avatar_url}></CardTitle>}
                   key={user._id}
                   className="black"
-                  textClassName="white-text"
-                  title={user.username}
+                  textClassName="white"
+                  title={`UserName: ${user.username}`}
                   actions={[
-                    <a>Name: &nbsp; {user.name}</a>,
-                    <Button
-                      waves="light"
-                      className='red'
-                      node="a"
-                      href={`/Users/${user._id}`}
-                    >
-                      read More
-                    </Button>
+                    <a>Name: &nbsp; {user.name}</a>
                   ]}
                 >
                   {/* {user.username} */}
@@ -49,7 +42,6 @@ class Users extends Component {
               </Col>
             )
           })}
-          <p>user</p>
         </div>
        
               
