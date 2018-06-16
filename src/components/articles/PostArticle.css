@@ -1,0 +1,33 @@
+.postpagebox {
+    height: 85%;
+    background-color: white;
+    border: solid;
+    padding: 5px;
+    margin-top: 30px;
+  }
+  
+  .formbox {
+    width: 80%;
+    height: 70%;
+    margin: auto;
+    padding-top: 10%;
+  }
+  
+  .bodyinput {
+    max-width: 100%;
+  }
+  
+  .submit {
+    background-color: transparent;
+    color: #272727;
+    font-size: 20px;
+    padding: 5px;
+    margin-top: 30px;
+  }
+  
+  .submit {
+    color: darkblue;
+    border-color: black;
+    cursor: pointer;
+  }
+  

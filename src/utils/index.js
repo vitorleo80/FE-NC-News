@@ -60,3 +60,45 @@ export function getUsersId() {
 
 
 
+export const postArticle = (title, body, topic, created_by) => {
+  console.log('posting.....')
+  const newArticle = {
+    title,
+    body,
+    created_by
+  }
+  return axios.post(
+    `${url}/topics/${topic}/articles`,
+    newArticle
+  ).then(response => {
+    console.log(response)
+  })
+}
+
+
+export const UsersFromArticles = articles => {
+  
+  const user = articles.reduce((acc, article) => {
+    if (acc[article.created_by] === undefined) {
+      acc[article.created_by] = 1
+    } else {
+      acc[article.created_by]++
+    }
+      return acc
+  }, {})
+
+
+  const topArr = Object.entries(user);
+  return topArr
+ }
+
+ export const formatData = obj => {
+
+  let newArr = Object.keys(obj)
+  let result = newArr.map(key=> {
+    let ret = {}
+    ret[key] = obj[key];
+      return ret;
+  })
+  return result
+}

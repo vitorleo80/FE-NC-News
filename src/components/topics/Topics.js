@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import { Card, Col, Button, CardTitle } from "react-materialize";
 import {Link} from 'react-router-dom'
 import {getData} from '../../utils'
@@ -35,6 +35,7 @@ class Topics extends Component {
     render(){
         const topics = this.state.topics
         return(
+          <Fragment>
         <div className="topics">
           {topics.map((topic, index) => {
             return (
@@ -50,7 +51,7 @@ class Topics extends Component {
                       key={`actions1${index}`}
                       waves="light"
                       className='salmon'
-                      node="a"
+                      
                     
                     >
                       Read All Articles
@@ -66,7 +67,7 @@ class Topics extends Component {
           })}
          
         </div>
-        
+        </Fragment>
         
        
               

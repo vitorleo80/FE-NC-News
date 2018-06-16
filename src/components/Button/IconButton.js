@@ -3,7 +3,7 @@ import { Button } from "react-materialize";
 import PT from "prop-types";
 
 const IconButton = props => {
-  const { id, colour, func, direction, icon } = props;
+  const { id, colour, func, direction, icon, index } = props;
   return (
     <Button
       id={id}
@@ -11,7 +11,7 @@ const IconButton = props => {
       className={`${colour}`}
       waves="light"
       icon={`${icon}`}
-      onClick={() => func(id, direction)}
+      onClick={() => func(id, direction, index)}
     />
   );
 };

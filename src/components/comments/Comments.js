@@ -16,25 +16,26 @@ class Comments extends Component {
    }
 
     componentDidMount = async () => {
-        const {url} = this.props.match
-        const {articles} = this.props.location.state
+        // const {url} = this.props.match || this.props
+        const url = this.props.url
+        // const article_title = this.props.location.state.articles 
+        const article_title = this.props.article_title
         const {comments} = await getData(url)
-        const article_title = articles
         this.setState({comments, article_title})
    }
+   
+  //  componentDidUpdate = async (prevProps, prevState) => {
+  //    const {url} = this.props.match
+  //    if (prevProps.match.url !== url){
+  //     const {comments} = await getData(url)
+  //     this.setState({comments})
+  //   }
+  // }
+
         
 
 
-   componentDidUpdate = async (prevProps, prevState) => {
-     const {url} = this.props.match
-     if (prevProps.match.url !== url){
-      const {comments} = await getData(url)
-      this.setState({comments})
-    }
-  }
  
-
-
   render(){
       const comments = this.state.comments
 
@@ -98,12 +99,17 @@ class Comments extends Component {
 
 
           )
-        })}
+        }
+      )
+        }
       </div>
       
-      
- 
-            
+// //  <div>     
+// //  <p>Comments </p>
+// //  <p>{this.props.url}</p>
+// //  <p>{this.props.article_title}</p>
+  
+//  </div>       
   )
       
       
@@ -119,6 +125,8 @@ handleClick = (id, direction = 'error') => {
   
   
 export default Comments
+
+
       
 
   

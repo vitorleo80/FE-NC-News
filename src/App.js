@@ -9,10 +9,15 @@ import Topics from './components/topics/Topics'
 import Main from './components/main/Main'
 import Comments from './components/comments/Comments'
 import NotFound from './components/error/NotFound'
+import PostArticle from './components/articles/PostArticle'
 
 
 
 class App extends Component {
+
+  state={
+    user: "5b07f205990a3721f68dffb9"
+  }
  
   render() {
     return (
@@ -20,6 +25,13 @@ class App extends Component {
         <Nav/>
         <Header/>
         <Switch>
+        <Route
+            exact
+            path="/post"
+            render={props => (
+              <PostArticle {...props} user={this.state.user}/>
+            )}
+          />
           <Route
             exact
             path="/articles"
