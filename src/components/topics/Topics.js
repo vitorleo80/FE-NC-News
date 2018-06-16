@@ -46,7 +46,7 @@ class Topics extends Component {
                   textClassName="white"
                   title={topic.title.toUpperCase()}
                   actions={[
-                    <Link to={`/topics/${topic.title.toLowerCase()}/articles`}>
+                    <Link key={`link${index}`}to={`/topics/${topic.title.toLowerCase()}/articles`}>
                     <Button
                       key={`actions1${index}`}
                       waves="light"

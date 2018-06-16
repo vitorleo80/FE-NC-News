@@ -34,7 +34,7 @@ class Users extends Component {
                   textClassName="white"
                   title={`UserName: ${user.username}`}
                   actions={[
-                    <a>Name: &nbsp; {user.name}</a>
+                    <a key={`user${index}`}>Name: &nbsp; {user.name}</a>
                   ]}
                 >
                   {/* {user.username} */}

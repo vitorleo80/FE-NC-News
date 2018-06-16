@@ -17,7 +17,6 @@ const SimpleArticle = (props) => {
             title={article.title}
             actions={[
               <a key={`a1${index}`}>{article.votes} Votes</a>,
-              <a key={`a2${index}`}>Created by: &nbsp; {article.created_by}</a>,
               <a key={`a4${index}`}>Topic: {article.belongs_to}</a>,
               //go to individual article
               <Link key={`actions3${index}`} to={`/articles/${article._id}`}>

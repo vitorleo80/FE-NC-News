@@ -16,11 +16,11 @@ const IconButton = props => {
   );
 };
 
-IconButton.propTypes = {
-  id: PT.string.isRequired,
-  colour: PT.string.isRequired,
-  func: PT.func.isRequired,
-  icon: PT.string.isRequired
-};
+// IconButton.propTypes = {
+//   id: PT.string.isRequired,
+//   colour: PT.string.isRequired,
+//   func: PT.func.isRequired,
+//   icon: PT.string.isRequired
+// };
 
 export default IconButton;

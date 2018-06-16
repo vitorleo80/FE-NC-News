@@ -69,8 +69,9 @@ class App extends Component {
           />
           <Route
             path="/articles/:article_id/comments"
+            
             render={props => {
-              return <Comments {...props}/>;
+              return <Comments {...props} pathname = {props.location.pathname}/>;
             }}
           />
 

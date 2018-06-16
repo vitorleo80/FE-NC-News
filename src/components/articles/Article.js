@@ -7,7 +7,7 @@ import Comments from '../comments/Comments'
 
 
 const Article = (props) => {
-    const {article, index, handleVoteClick, handleChange, addComment, articlesSize, inputComments} = props
+    const {article, index, handleChange, addComment, articlesSize, inputComments, handleVoteClick} = props
     if(articlesSize > 1) {
     return (
       <div className='articlesCard'>
@@ -40,18 +40,11 @@ const Article = (props) => {
             <a key={`a1${index}`}>{article.votes} Votes</a>,
             <a key={`a2${index}`}>Created by: &nbsp; {article.created_by}</a>,
             <a key={`a4${index}`}>Topic: {article.belongs_to}</a>,
+            <a key={`a5${index}`}>Comments: {article.comments}</a>,
             //see all comments of this article
-            <Link key = {`link${index}`} to={{pathname:`/articles/${article._id}/comments`, 
-                      state: {articles: article.title, id:`actions3${index}`} }}>
-            <Button
-              key={`button${index}`}
-              waves="light"
-              className='grey'
-              
-            >
-              Comments {article.comments}
-            </Button>
-           </Link>,
+          //   <Link key = {`link${index}`} to={{pathname:`/articles/${article._id}/comments`, 
+          //             state: {articles: article.title}  }}>
+          //  </Link>,
             //go to individual article
             <Link key={`actions3${index}`} to={`/articles/${article._id}`}>
             <Button
@@ -75,16 +68,16 @@ const Article = (props) => {
         key = {`textarea${index}`}
         className="form-control"
         aria-label="Comment textarea"
+        value={inputComments}
         placeholder='Post your comment about this article'
         onChange={handleChange}
-        value={inputComments}
       />
       <IconButton
-            key={`${index}`}
+            key={`Comment${index}`}
             className="btn btn-secondary"
             id={article._id}
-            colour="blue"
             index={index}
+            colour="blue"
             func={addComment}
             icon="send"
             align="left"
@@ -123,9 +116,10 @@ const Article = (props) => {
               key={`actions2${index}`}
               id={article._id}
               colour="red"
-              index={index}
+              
               func={handleVoteClick}
               direction="down"
+              index={index}
               icon="sentiment_very_dissatisfied"
           />,
             <a key={`a1${index}`}>{article.votes} Votes</a>,
@@ -163,7 +157,7 @@ const Article = (props) => {
           
       </div>
     </div>
-    <Comments url={`/articles/${article._id}/comments`} article_title={article.title}/>
+    {/* <Comments comments={comments} handleClick={handleClick} handleVoteClick={handleVoteClick}/> */}
     
     </div>
       )

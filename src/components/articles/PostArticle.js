@@ -28,7 +28,6 @@ class PostArticle extends Component {
             />
         <Input s={10} type='select'
                label="Select your Topic" 
-               defaultValue="1"
                onChange={this.handleTopicSelect}
                value={topic}
                >
@@ -71,6 +70,11 @@ class PostArticle extends Component {
     const {user} = this.props
     if (title && body) {
       postArticle(title, body, topic, user)
+      this.setState({
+        title: "",
+        body: "",
+        topic: ""
+      })
       }
     }
   }

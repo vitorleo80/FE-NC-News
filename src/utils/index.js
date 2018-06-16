@@ -7,6 +7,12 @@ export async function getData(props){
     return data
 }
 
+export async function getComments(props){
+  let {data} = await axios.get(`${url}${props}/comments`)
+  
+  return data
+}
+
 
 export  const voteArticle = (id, direction) => {
    
