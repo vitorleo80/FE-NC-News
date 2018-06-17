@@ -55,15 +55,15 @@ render(){
 
   return(
     <div className="container">
-    {this.state.articles.length > 1 && <h1> articles </h1>}
+    {/* {this.state.articles.length > 1 && <h1> articles </h1>}
       {articles.map((article, index) => { 
         return <Article key={`article${index}`} article={article} index={index}  handleVoteClick={this.handleVoteClick} 
         handleChange={this.handleChange} addComment={this.addComment} articlesSize={articles.length} inputComments={this.state.comment} />
       })}
          
-     <Comments comments={this.state.comments} handleDelete={this.handleDelete} handleVoteCommentClick={this.handleVoteCommentClick}/> 
+     <Comments comments={this.state.comments} handleDelete={this.handleDelete} handleVoteCommentClick={this.handleVoteCommentClick}/>  */}
      
-    
+    <p>Articles</p>
     </div>
     
     )
