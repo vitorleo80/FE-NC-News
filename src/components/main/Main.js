@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
 import { Row, Col, Card, CardTitle , Button} from "react-materialize"
 import "./Main.css"
 import {Link} from 'react-router-dom'
 import {getData, UsersFromArticles, formatData } from '../../utils'
 import TopArticles from '../toparticles/TopicArticles'
+import NotFound from '../error/NotFound'
 
 
 class Main extends Component {
@@ -16,12 +17,11 @@ class Main extends Component {
 
     componentDidMount = async () => {
         const {articles} = await getData("/articles")
+        if(!articles) this.setState({error: true})
         this.setState({articles})
-
         let topArticles = articles.sort(function(a, b) {
             return b.votes - a.votes;
         })
-        
         let users = UsersFromArticles(articles)
         let sortedUsers = users.sort((a, b) => a[1] - b[1])
         let top3UsersObj = sortedUsers.slice(-3).reduce(function (acc, pair) {
@@ -32,56 +32,114 @@ class Main extends Component {
         this.setState({
             articles: topArticles.slice(0, 4),
             users: top3Users
-          })
-   } 
-        
+        })
+    } 
 
-   render(){
-    const { articles, users } = this.state
-       return (
-          
-           <Fragment>
-           <div className='topArticles'>   
-           <Col s={8} m={4} l={2} className='topArticles1'>
-           <TopArticles articles={articles.slice(0, 2)}/>
-           </Col>
-           <Col s={8} m={4} l={2}  className='topArticles1'>
-           <TopArticles articles={articles.slice(2, 4)}/>
-           </Col>
-           </div>
-           
+    render(){
+        const { articles, users, error } = this.state
+        if(error){
+            return (
+                <div>
+                <NotFound {...this.props} />
+                </div>
+            )  
+        }
+ 
+        return (
             
-           <div className="post">
-           <Col s={4} s={1} m={4} l={8} className='postArticle' >
-           <Card className='small'
-           header={<CardTitle image={`https://source.unsplash.com/user/maguay/640x640`}></CardTitle>}
-           actions={[
-           <Link to={`/post`}>
-               <Button
-                 waves="light"
-                 className='grey'
-                 node="a"
-               >
-                 Create Post
-               </Button>
-              </Link>
-           ]}>
-           <p className="instructions">Start a thread</p>
-           </Card>
-           </Col>
-           </div>
+          <div className='body'>
+            <div className="title">
+              
+                <h1>
+                  top articles
+                </h1>
+              
+              </div>
+            
+         
+          <Row>
+          <Col m={6} s={12} className='topArticles1'>
+          <TopArticles articles={articles.slice(0, 2)}/>
+          </Col>
+          <Col m={6} s={12} className='topArticles2'>
+          <TopArticles articles={articles.slice(2, 4)}/>
+          </Col>
+          </Row>
+          
+           
+          <Row> 
+          <Col m={6} s={6} className='userTitle'>
+          <div className="title1">
+              <h1>top users</h1>
+          </div>
+          </Col>
+          <Col m={6} s={6} className='userTitle'>
+          <div className="title1">
+              <h1>post an article</h1>
+          </div>
+          </Col>
+          </Row>
 
-           
-           </Fragment>
-           
-           
-           
-           
-       )
-   }
+          <Row> 
+          <Col m={6} s={6} className='userleaderbox'>  
+           {this.state.users.length > 1 &&
+          <div id="container">
+            <div className="champ">
+            <div className="name">USER</div><div className="score">ARTICLES</div>
+            </div>
+
+            <div className="champ">
+            <div className="name">{Object.keys(users[2])}</div><div className="score">{Object.values(users[2])}</div>
+            </div>
+
+            <div className="champ">
+            <div className="name">{Object.keys(users[1])}</div><div className="score">{Object.values(users[1])}</div>
+            </div>
+
+            <div className="champ">
+            <div className="name">{Object.keys(users[0])}</div><div className="score">{Object.values(users[0])}</div>
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            </div>
+
+            
+          }
+          </Col>
+          <Col m={6} s={6} className='userTitle'>
+          <div className="title1">
+          <Card key={1454654}className='small'
+            header={<CardTitle image={`https://source.unsplash.com/user/maguay/480x480`}></CardTitle>}
+            actions={[
+            <Link key={'postlink'}to={`/post`}>
+            <Button
+            waves="light"
+            className='grey'
+            >
+            Create Post
+            </Button>
+            </Link>
+            ]}>
+            Contribute to our active community. Put your name out there and publish your article!
+          </Card>
+          </div>
+          </Col>
+          </Row>
+          </div>
+    
+          
+        
+        
+        
+    )
+}
 }
 
 export default Main
+        
+        
+
         
            
            

@@ -1,10 +1,9 @@
 import React, { Component } from "react"
 import {getData, voteArticle, getUsersId, postComment, getComments, deleteComment, voteComment} from '../../utils'
 import "./Articles.css"
-import Loading from '../loading/Loading'
 import Article from './Article'
 import Comments from '../comments/Comments'
-
+import NotFound from '../error/NotFound'
 
 
 
@@ -35,39 +34,45 @@ class Articles extends Component {
  
   componentDidUpdate = async (prevProps, prevState) => {
     const {url} = this.props.match
-    
-     if (prevProps.match.url !== url) {
-      const {articles} = await getData(url)
-      let {comments} = await getComments(url)
-      comments = comments.sort((a, b) => b.created_at - a.created_at)
-      this.setState({articles, comments})
-     }
-  
+    if (prevProps.match.url !== url) {
+     const {articles} = await getData(url)
+     let {comments} = await getComments(url)
+     comments = comments.sort((a, b) => b.created_at - a.created_at)
+     this.setState({articles, comments})
+    }
+ 
 }
+    
 
 
 
   
 render(){
     let {articles} = this.state
-
-   
     if(!Array.isArray(articles)){
       articles = [articles]
     } 
 
     if(!articles.length) {
-      return <Loading />
+      <div>
+      <NotFound {...this.props} />
+      </div>
      }
+
+   
    return(
-    <div className="articles">
+    <div className="container">
+    {this.state.articles.length > 1 && <h1> Articles </h1>}
       {articles.map((article, index) => { 
-        return <Article key={`article${index}`}article={article} index={index}  handleVoteClick={this.handleVoteClick} 
+        return <Article key={`article${index}`} article={article} index={index}  handleVoteClick={this.handleVoteClick} 
         handleChange={this.handleChange} addComment={this.addComment} articlesSize={articles.length} inputComments={this.state.comment} />
       })}
-     <Comments comments={this.state.comments} handleDelete={this.handleDelete} handleVoteCommentClick={this.handleVoteCommentClick}/>  
+         
+     <Comments comments={this.state.comments} handleDelete={this.handleDelete} handleVoteCommentClick={this.handleVoteCommentClick}/> 
+     
+    
     </div>
-  
+    
     )
 
   
@@ -104,9 +109,9 @@ render(){
       const newComment = {
         body: this.state.comment,
         belongs_to: id,
-        created_by: user
+        created_by: user[0]
       }
-      postComment(id, newComment).then(()=>{
+      postComment(id, newComment)
 
         const {articles} = this.state
         
@@ -122,6 +127,9 @@ render(){
         
       }else {
         const articles = this.state.articles
+        newComment.votes = 0
+        newComment.created_by = user[1]
+        console.log(newComment)
         const comments = [...this.state.comments, newComment]
         this.setState({
           articles,
@@ -130,38 +138,38 @@ render(){
           
         })
       }
+    }
+
+    handleDelete = (id, direction , index) => {
+      deleteComment(id) 
+      const comments = [...this.state.comments]
+      const newComments = comments.filter(comment => comment !== comments[index])
+      this.setState({
+        comments: newComments
+      })  
+    }
+
+    handleVoteCommentClick = (id, direction, index) => {
+          voteComment(id, direction)
         
+            const comments = [...this.state.comments]
+              comments[index].votes = direction === "up" ? comments[index].votes + 1 : comments[index].votes - 1
+              this.setState({comments})
+      }
+
+}
+        
+export default Articles
         
         
          
 
 
-      })
+      
         
       
      
 
-      }
-
-      handleDelete = (id, direction , index) => {
-        deleteComment(id) 
-        const comments = [...this.state.comments]
-        const newComments = comments.filter(comment => comment !== comments[index])
-        this.setState({
-          comments: newComments
-        })  
-      }
-
-      handleVoteCommentClick = (id, direction, index) => {
-            voteComment(id, direction)
-          
-              const comments = [...this.state.comments]
-                comments[index].votes = direction === "up" ? comments[index].votes + 1 : comments[index].votes - 1
-                this.setState({comments})
-        }
-
-}
-export default Articles
 
 
 

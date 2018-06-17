@@ -1,9 +1,9 @@
-import React from "react";
-import { Button } from "react-materialize";
-import PT from "prop-types";
+import React from "react"
+import { Button } from "react-materialize"
+
 
 const IconButton = props => {
-  const { id, colour, func, direction, icon, index } = props;
+  const { id, colour, func, direction, icon, index } = props
   return (
     <Button
       id={id}
@@ -13,14 +13,8 @@ const IconButton = props => {
       icon={`${icon}`}
       onClick={() => func(id, direction, index)}
     />
-  );
-};
+  )
+}
 
-// IconButton.propTypes = {
-//   id: PT.string.isRequired,
-//   colour: PT.string.isRequired,
-//   func: PT.func.isRequired,
-//   icon: PT.string.isRequired
-// };
 
-export default IconButton;
+export default IconButton

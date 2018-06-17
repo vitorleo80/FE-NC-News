@@ -1,11 +1,18 @@
 import React from "react"
 import './Header.css'
 
-const Header = props => {
+const Header = () => {
     return (
-      <div className={"header"}>
-        <div className="title">
-          
+      <div className={"banner-wrapper"}>
+        <div className="title-wrapper">
+          <div className="login">
+            <img
+              className="logo"
+              src="https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png"
+              alt="../../banner.png"
+            />
+            <p>NEWS</p>
+          </div>
         </div>
       </div>
     )

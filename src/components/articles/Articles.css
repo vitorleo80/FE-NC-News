@@ -5,3 +5,12 @@
 .a{
     color:white
 }
+
+
+.container {
+    display: grid;
+    grid-gap: 30px;
+    align-self: center;
+    margin-right: 120px;
+    grid-template-columns: repeat(auto-fill, 800px)
+  }

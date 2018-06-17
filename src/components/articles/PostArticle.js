@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import PT from "prop-types";
+import React, { Component } from "react"
 import { Row, Input } from "react-materialize"
 import { postArticle } from "../../utils"
 import "./PostArticle.css"
@@ -16,10 +15,16 @@ class PostArticle extends Component {
   render() {
     const { topic, title, body } = this.state
     return (
+      <div>
+              
+        <h4>You are submitting a text-based post. Speak your mind. A title is required, but expanding further in the text field is not. </h4>
+              
+             
         <Row className="postpagebox">
         <div className="formbox">
         <Input 
             placeholder="Insert your title" 
+            required
             type="text"
             id="inputTitle3"
             s={10} label="Article Title" 
@@ -30,6 +35,8 @@ class PostArticle extends Component {
                label="Select your Topic" 
                onChange={this.handleTopicSelect}
                value={topic}
+               
+               
                >
         <option value='1'></option>
         <option value='coding'>coding</option>
@@ -53,6 +60,7 @@ class PostArticle extends Component {
         </button>
         </div>
     </Row>
+    </div>
     )
   }
                 
@@ -77,6 +85,7 @@ class PostArticle extends Component {
       })
       }
     }
+    
   }
 
 

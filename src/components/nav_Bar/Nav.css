@@ -1,7 +1,12 @@
 .navbar {
-    background-color:black;
+    background-color: white;
     
   }
+.navbar > li p:hover{
+  background-color: grey;
+}
+
+
 p {
     color: white
 }

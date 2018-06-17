@@ -3,7 +3,8 @@
     background-color: white;
     border: solid;
     padding: 5px;
-    margin-top: 30px;
+    margin: 30px 530px 30px 30px;
+    
   }
   
   .formbox {
@@ -22,7 +23,7 @@
     color: #272727;
     font-size: 20px;
     padding: 5px;
-    margin-top: 30px;
+    margin: 30px;
   }
   
   .submit {
@@ -31,3 +32,8 @@
     cursor: pointer;
   }
   
+  h4{
+    font-family: 'Ubuntu', bold, sans-serif;
+    text-align: left;
+    margin: 30px 530px 30px 30px;
+  }
