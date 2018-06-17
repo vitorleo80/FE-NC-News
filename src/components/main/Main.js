@@ -81,7 +81,7 @@ class Main extends Component {
           </Row>
 
           <Row> 
-          <Col m={6} s={6} className='userleaderbox'>  
+          <Col m={6} s={3} className='userleaderbox'>  
            {this.state.users.length > 1 &&
           <div id="container">
             <div className="champ">
@@ -107,7 +107,7 @@ class Main extends Component {
             
           }
           </Col>
-          <Col m={6} s={6} className='userTitle'>
+          <Col m={6} s={3} className='userTitle'>
           <div className="title1">
           <Card key={1454654}className='small'
             header={<CardTitle image={`https://source.unsplash.com/user/maguay/480x480`}></CardTitle>}
@@ -121,7 +121,7 @@ class Main extends Component {
             </Button>
             </Link>
             ]}>
-            Contribute to our active community. Put your name out there and publish your article!
+            Contribute to our active community. Publish your article!
           </Card>
           </div>
           </Col>
