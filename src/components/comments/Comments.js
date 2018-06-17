@@ -67,33 +67,33 @@ class Comments extends Component {
               </Card>
             </Col>
           </div>
-              
-              
-              
-              
-              
-              
-  
-  
-  
-  
-          )
-        }
-      )
-        }
-      </div>
-      
-  
+            )
+          }
+        )
+          }
+        </div>
         
-  )
-      
-      
-  } 
     
-  
+          
+    )
+        
+        
+    } 
+      
+    
   }
+    
+    export default Comments
+              
+              
+              
+              
+              
+              
   
-  export default Comments
+  
+  
+  
 
 
      

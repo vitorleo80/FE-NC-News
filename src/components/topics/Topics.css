@@ -1,3 +1,20 @@
 .p{
     color: yellow;
 }
+
+.topics{
+    display: grid;
+    grid-gap: 30px;
+    align-self: center;
+    margin-left: 80px;
+    grid-template-columns: repeat(auto-fill, 400px)
+}
+
+ .h1 {
+    font-family: 'Ubuntu', bold, sans-serif;
+   
+  }
+
+  .red{
+      margin-left: 40px;
+  }

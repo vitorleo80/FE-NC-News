@@ -3,7 +3,6 @@ import axios from 'axios'
 const url = "https://norhtcoders-app.herokuapp.com/api"
 
 export async function getData(props){
-  console.log(props)
     let {data} = await axios
       .get(`${url}${props}`)
         return data

@@ -3,7 +3,6 @@ import {getData, voteArticle, getUsersId, postComment, getComments, deleteCommen
 import "./Articles.css"
 import Article from './Article'
 import Comments from '../comments/Comments'
-import NotFound from '../error/NotFound'
 
 
 
@@ -53,16 +52,9 @@ render(){
       articles = [articles]
     } 
 
-    if(!articles.length) {
-      <div>
-      <NotFound {...this.props} />
-      </div>
-     }
-
-   
-   return(
+  return(
     <div className="container">
-    {this.state.articles.length > 1 && <h1> Articles </h1>}
+    {this.state.articles.length > 1 && <h1> articles </h1>}
       {articles.map((article, index) => { 
         return <Article key={`article${index}`} article={article} index={index}  handleVoteClick={this.handleVoteClick} 
         handleChange={this.handleChange} addComment={this.addComment} articlesSize={articles.length} inputComments={this.state.comment} />
@@ -129,7 +121,6 @@ render(){
         const articles = this.state.articles
         newComment.votes = 0
         newComment.created_by = user[1]
-        console.log(newComment)
         const comments = [...this.state.comments, newComment]
         this.setState({
           articles,

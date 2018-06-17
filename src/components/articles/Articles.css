@@ -14,3 +14,8 @@
     margin-right: 120px;
     grid-template-columns: repeat(auto-fill, 800px)
   }
+
+  .h1 {
+    font-family: 'Ubuntu', bold, sans-serif;
+   
+  }

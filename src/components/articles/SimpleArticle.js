@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom'
 
 
 const SimpleArticle = (props) => {
-    const {article, index, handleVoteClick, handleChange, addComment } = props;
+    const {article, index} = props;
     return (
       <div className='articlesCard'>
-      <Card className='small'
+      <Card 
       horizontal
       header={<CardTitle image= {`https://source.unsplash.com/collection/630995/480x480`}></CardTitle>}
       className="black"

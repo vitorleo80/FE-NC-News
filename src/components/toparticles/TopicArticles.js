@@ -18,4 +18,4 @@ class TopArticles extends Component {
   
 }
 
-export default TopArticles;
+export default TopArticles

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Card, Col, Button, CardTitle } from "react-materialize";
+import { Card, Col, CardTitle } from "react-materialize";
 import {getData} from '../../utils'
 import "./Users.css"
 
@@ -23,7 +23,9 @@ class Users extends Component {
         const newUsers = this.state.users
         
         return(
-        <div className="Users">
+          <div><h1> users </h1>
+        <div className="users">
+            
           {newUsers.map((user, index) => {
             return (
               <Col key={index} m={2} s={1}>
@@ -37,12 +39,13 @@ class Users extends Component {
                     <a key={`user${index}`}>Name: &nbsp; {user.name}</a>
                   ]}
                 >
-                  {/* {user.username} */}
+
                 </Card>
               </Col>
             )
           })}
         </div>
+          </div> 
        
               
     )
