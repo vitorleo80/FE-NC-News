@@ -7,6 +7,7 @@
     "moment": "^2.22.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-loading": "^2.0.2",
     "react-materialize": "^2.2.1",
     "react-moment": "^0.7.4",
     "react-native-leaderboard": "^1.0.5",

@@ -1,18 +1,32 @@
 .navbar {
-    background-color: white;
+    background-color: black;
+    
     
   }
 .navbar > li p:hover{
-  background-color: grey;
+  background-color: red;
 }
 
 
-p {
-    color: white
+.p {
+    color: white;
 }
 
 @media screen and (max-width: 992px) {
-    p {
-      color: black
-    }
+   
+  #nav-mobile {
+    background-color: lightgrey;
+   }
+  
+   #nav-mobile > li p:hover{
+    background-color: darkgray;
+   }
+
+   #nav-mobile p{
+    color: black;
+   }
+   
+
+
+
   }

@@ -3,7 +3,7 @@ import {getData, voteArticle, getUsersId, postComment, getComments, deleteCommen
 import "./Articles.css"
 import Article from './Article'
 import Comments from '../comments/Comments'
-import Button from '../button/IconButton'
+
 
 
 
