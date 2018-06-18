@@ -8,12 +8,14 @@ import Loading from '../loading/Loading'
 
 
 
+
 class Articles extends Component {
   
   state = {
    articles: [],
    comments: [],
-   comment: ''
+   comment: '',
+   key: false
   }
 
  componentDidMount = async () => {
@@ -21,9 +23,7 @@ class Articles extends Component {
           (this.props.match.path === '/topics/:topic_id/articles')){
        const {url} = this.props.match
        const {articles} = await getData(url)
-       this.setState({
-         articles
-        })
+       this.setState({articles})
       } else {
         const {url} = this.props.match
         const {articles} = await getData(url)
@@ -35,12 +35,19 @@ class Articles extends Component {
  
   componentDidUpdate = async (prevProps, prevState) => {
     const {url} = this.props.match
+    
     if (prevProps.match.url !== url) {
+
+      if (this.state.key === false) {
      const {articles} = await getData(url)
      let {comments} = await getComments(url)
      comments = comments.sort((a, b) => b.created_at - a.created_at)
-     this.setState({articles, comments})
+     this.setState({articles, comments, key: true})
+    } else {
+        const { articles } = await getData(url)
+        this.setState({ articles, key: false })
     }
+  }
  
 }
     

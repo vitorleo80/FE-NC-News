@@ -10,6 +10,7 @@ const Article = (props) => {
     const {article, index, handleChange, addComment, articlesSize, inputComments, handleVoteClick} = props
     if(articlesSize > 1) {
     return (
+      //articles card
       <div className='card'>
         <Card
         key={`card${index}`}
