@@ -8,18 +8,14 @@ class PostArticle extends Component {
   state = {
     title: "",
     body: "",
-    topic: "",
-    postSuccess: false
+    topic: ""
   }
 
   render() {
     const { topic, title, body } = this.state
     return (
       <div>
-              
         <h4>You are submitting a text-based post. Speak your mind. A title is required, but expanding further in the text field is not. </h4>
-              
-             
         <Row className="postpagebox">
         <div className="formbox">
         <Input 
@@ -91,6 +87,9 @@ class PostArticle extends Component {
 
 
 
-export default PostArticle;
+export default PostArticle
+              
+             
 
 
+              

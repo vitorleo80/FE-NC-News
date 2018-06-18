@@ -1,8 +1,9 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import {getData, voteArticle, getUsersId, postComment, getComments, deleteComment, voteComment} from '../../utils'
 import "./Articles.css"
 import Article from './Article'
 import Comments from '../comments/Comments'
+import Loading from '../loading/Loading'
 
 
 
@@ -54,6 +55,8 @@ render(){
     } 
 
   return(
+    <Fragment>
+      {articles.length > 0 && (
     <div className="container">
     {this.state.articles.length > 1 && <h1> articles </h1>}
       {articles.map((article, index) => { 
@@ -65,7 +68,9 @@ render(){
      
     <p>Articles</p>
     </div>
-    
+    )}
+      {articles.length === 0 && <Loading />}
+    </Fragment>
     )
 
   

@@ -1,8 +1,9 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import { Card, Button, CardTitle } from "react-materialize";
 import {Link} from 'react-router-dom'
 import {getData} from '../../utils'
 import "./Topics.css"
+import Loading from '../loading/Loading'
 
 
 class Topics extends Component {
@@ -29,6 +30,8 @@ class Topics extends Component {
    render(){
        const topics = this.state.topics
        return(
+       <Fragment>
+        {topics.length > 0 && (    
        <div> 
            <h1> articles by topic </h1>
        <div className="topics">
@@ -61,6 +64,9 @@ class Topics extends Component {
              
       </div>
       </div>
+           )}
+           {topics.length === 0 && <Loading />}
+         </Fragment>
     )
 
 

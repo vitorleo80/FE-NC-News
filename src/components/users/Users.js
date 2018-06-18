@@ -1,8 +1,8 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import { Card, Col, CardTitle } from "react-materialize";
 import {getData} from '../../utils'
 import "./Users.css"
-
+import Loading from '../loading/Loading'
 
 class Users extends Component {
    
@@ -23,8 +23,11 @@ class Users extends Component {
         const newUsers = this.state.users
         
         return(
+          <Fragment>
+            {newUsers.length > 0 && (  
+
           <div><h1> users </h1>
-        <div className="users">
+          <div className="users">
             
           {newUsers.map((user, index) => {
             return (
@@ -46,7 +49,9 @@ class Users extends Component {
           })}
         </div>
           </div> 
-       
+        )}
+            {newUsers.length === 0 && <Loading />}
+        </Fragment>
               
     )
         
