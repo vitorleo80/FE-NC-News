@@ -22,8 +22,8 @@ class Topics extends Component {
    componentDidUpdate = async (prevProps, prevState) => {
      const {url} = this.props.match
      if (prevProps.match.url !== url){
-       const data = await getData(url)
-       this.setState({topics: data.topics})
+       const {topics} = await getData(url)
+       this.setState({topics})
      }
    }
 
@@ -47,7 +47,11 @@ class Topics extends Component {
                       textClassName="white"
                       title={topic.title.toUpperCase()}
                       actions={[
-                        <Link key={`link${index}`}to={`/topics/${topic.title.toLowerCase()}/articles`}>
+                        // <Link key={`link${index}`} to={`/topics/${topic.title.toLowerCase()}/articles` }>
+                          <Link to={{
+                            pathname: `/topics/${topic.title.toLowerCase()}/articles` ,
+                            state: { topics: topic.title }
+                          }}>
                         <Button
                           key={`actions1${index}`}
                           waves="light"

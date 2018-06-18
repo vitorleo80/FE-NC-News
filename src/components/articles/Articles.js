@@ -19,11 +19,17 @@ class Articles extends Component {
   }
 
  componentDidMount = async () => {
-       if((this.props.match.url === '/articles') ||
-          (this.props.match.path === '/topics/:topic_id/articles')){
+      if(this.props.match.url === '/articles'){
        const {url} = this.props.match
        const {articles} = await getData(url)
        this.setState({articles})
+      } 
+        else if (this.props.match.path === '/topics/:topic_id/articles'){
+         const topic = this.props.match.params.topic_id
+         const url = '/articles'
+         let { articles } = await getData(url)
+         let filteredArticles = articles.filter(article => article.belongs_to === topic)
+        this.setState({ articles: filteredArticles })
       } else {
         const {url} = this.props.match
         const {articles} = await getData(url)
@@ -35,7 +41,7 @@ class Articles extends Component {
  
   componentDidUpdate = async (prevProps, prevState) => {
     const {url} = this.props.match
-    
+    console.log(prevProps)
     if (prevProps.match.url !== url) {
 
       if (this.state.key === false) {
