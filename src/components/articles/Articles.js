@@ -15,7 +15,7 @@ class Articles extends Component {
    articles: [],
    comments: [],
    comment: '',
-   key: false
+   individual_article: false
   }
 
  componentDidMount = async () => {
@@ -41,17 +41,16 @@ class Articles extends Component {
  
   componentDidUpdate = async (prevProps, prevState) => {
     const {url} = this.props.match
-    console.log(prevProps)
     if (prevProps.match.url !== url) {
 
-      if (this.state.key === false) {
+      if (this.state.individual_article === false) {
      const {articles} = await getData(url)
      let {comments} = await getComments(url)
      comments = comments.sort((a, b) => b.created_at - a.created_at)
-     this.setState({articles, comments, key: true})
+        this.setState({ articles, comments, individual_article: true})
     } else {
         const { articles } = await getData(url)
-        this.setState({ articles, key: false })
+        this.setState({ articles, individual_article: false })
     }
   }
  

@@ -47,8 +47,7 @@ class Topics extends Component {
                       textClassName="white"
                       title={topic.title.toUpperCase()}
                       actions={[
-                        // <Link key={`link${index}`} to={`/topics/${topic.title.toLowerCase()}/articles` }>
-                          <Link to={{
+                          <Link key={`link${index}`} to={{
                             pathname: `/topics/${topic.title.toLowerCase()}/articles` ,
                             state: { topics: topic.title }
                           }}>
